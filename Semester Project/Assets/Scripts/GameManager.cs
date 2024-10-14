@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
 
-    public static LevelManager master;
+    public static GameManager master;
     public Transform startPoint;
     public Transform[] enemyPath; // type 'Transform' holds position, rotation and scale of an object - used here to store enemy path node locations
 

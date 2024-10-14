@@ -4,38 +4,42 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rigidBody; // '[SerializeField]' allows a private variable to show and be edited in inspector
-    [SerializeField] private float moveSpeed = 5f;  // '[SerializeField]' allows a private variable to show and be edited in inspector
-    private Transform target; // point that enemy will move to
-    private int pathPosition = 0; // keeps track of position on path
+    public Rigidbody2D rigidBody;
+
+    public float moveSpeed = 5f;
+
+    private Transform target; // current point that enemy should move toward
+    private int location = 0; // current location of enemy on path
+
 
     // Start is called before the first frame update
     void Start()
     {
-        target = LevelManager.master.enemyPath[pathPosition]; // sets target to first element of enemyPath[] (startPoint)
+        target = GameManager.master.enemyPath[location]; // set target of enemy to first point of path
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(target.position, transform.position) <= 0.1f) // if enemy gets very close to target node
+        if(Vector2.Distance(target.position, transform.position) <= 0.1f) // if enemy is very close to current target
         {
-            pathPosition++; // increment position to indicate that enemy has arrived at target
+            location++;  // update location (and in turn target) to "point" to next node in path
 
-            if (pathPosition == LevelManager.master.enemyPath.Length) // if enemy has reached last node in enemyPath[]
+            if(location == GameManager.master.enemyPath.Length) // if enemy reaches end of path
             {
-                Destroy(gameObject); // destroy the enemy object
-                return; // return to prevent further code execution in this case
-            } else // if enemy has not reached last node
+                EnemySpawning.onEnemyDeath.Invoke(); // calls onEnemyDeath (EnemyDeath()) immediately
+                Destroy(gameObject); // destroy enemy
+                return;
+            } else
             {
-                target = LevelManager.master.enemyPath[pathPosition]; // update the target to the next node in enemyPath[]
+                target = GameManager.master.enemyPath[location]; // updates target after location changed
             }
         }
     }
 
-    private void FixedUpdate() // related to physics engine, should manipulate rigidbody in FixedUpdate()
+    private void FixedUpdate()
     {
-        Vector2 direction = (target.position - transform.position).normalized; // normalized so the value stays between 0 and 1. gives direction enemy must move in to reach next node
-        rigidBody.velocity = direction * moveSpeed; // moves rigidBody using velocity derived from direction and movement speed
+        Vector2 direction = (target.position - transform.position).normalized; // direction that enemy must move in to reach target (target postion - current position normalized)
+        rigidBody.velocity = direction * moveSpeed; // moves rigidBody in correct direction by calculating velocity based on direction and moveSpeed
     }
 }
