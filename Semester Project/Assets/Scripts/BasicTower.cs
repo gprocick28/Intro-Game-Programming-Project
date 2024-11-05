@@ -8,24 +8,24 @@ public class BasicTower : MonoBehaviour
 {
     public Transform rotationPoint;
     private Transform target;
+    public LayerMask maskEnemy; // 
 
-    public LayerMask maskEnemy;
     public float towerRange = 3f; // tower attack range
     private float rotationSpeed = 200f;
 
+    public GameObject bulletPrefab;
+    public float fireRate = 1f;   // bullets per second
+    public float fireDelay; // time until bullet is fired
+    public Transform firePoint;
+
+
     // https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnDrawGizmosSelected.html
-    // used to draw 'gizmos' if object is selected
+    // used to draw 'gizmos' if object is selected - shows tower range in editor only
     private void OnDrawGizmosSelected()
     {
         // https://docs.unity3d.com/ScriptReference/Handles.DrawWireDisc.html
         Handles.color = Color.red;
         Handles.DrawWireDisc(transform.position, transform.forward, towerRange); // Handles.DrawWireDisc(center, normal, radius)
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -43,7 +43,23 @@ public class BasicTower : MonoBehaviour
         if (!TargetInRange())
         {
             target = null;
+        } else
+        {
+            fireDelay += Time.deltaTime; // adds time in seconds since last frame to fireDelay
+
+            if (fireDelay >= 1f / fireRate)
+            {
+                Fire();
+                fireDelay = 0f;
+            }
         }
+    }
+
+    private void Fire()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        BulletController controller = bullet.GetComponent<BulletController>();
+        controller.SetTarget(target);
     }
 
     private bool TargetInRange()
@@ -53,6 +69,7 @@ public class BasicTower : MonoBehaviour
 
     void LocateTarget()
     {
+        // done using array of hits so that certain towers can target the last or first enemy within range like in BTD
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, towerRange, (Vector2) transform.position, 0f, maskEnemy); // CircleCastAll(origin, range, direction, distance, layermask)
 
         // if there was a hit

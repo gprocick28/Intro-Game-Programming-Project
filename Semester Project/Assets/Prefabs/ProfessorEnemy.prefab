@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8761342776840411848}
   - component: {fileID: 8022277147921263081}
   - component: {fileID: 8256820542910885739}
+  - component: {fileID: -5959221630733747765}
   m_Layer: 6
   m_Name: ProfessorEnemy
   m_TagString: Untagged
@@ -185,3 +186,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 8761342776840411848}
   moveSpeed: 5
+--- !u!114 &-5959221630733747765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5220063822779535432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660d5f13d6f640145ac726385cfac8b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1

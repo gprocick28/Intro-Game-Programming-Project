@@ -18,11 +18,15 @@ public class EnemySpawning : MonoBehaviour
     public int enemiesToSpawn; // amount of enemies left to spawn
     private float breakLength = 5f; // amount of time between waves in seconds
     private float timeSince; // amount of time since last enemy in seconds
-    public static UnityEvent onEnemyDeath = new UnityEvent(); // intialize to a new UnityEvent()
+    // https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html
+    public static UnityEvent onEnemyDeath = new UnityEvent(); // intialize to a new UnityEvent() - need unity event so that when damage is done in other scripts, we can call our EnemyDeath method from this script
 
     // Awake is called when a script instance is loaded (so, very early)
     private void Awake()
     {
+        // https://docs.unity3d.com/ScriptReference/Events.UnityEvent.AddListener.html
+        // https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html
+        // https://discussions.unity.com/t/unityevent-where-have-you-been-all-my-life/577808
         onEnemyDeath.AddListener(EnemyDeath);  // every time onEnemyDeath is called we call EnemyDeath
     }
 
@@ -53,7 +57,7 @@ public class EnemySpawning : MonoBehaviour
         }
     }
 
-    private void EnemyDeath()
+    public void EnemyDeath()
     {
         livingEnemies--;
     }
@@ -71,7 +75,7 @@ public class EnemySpawning : MonoBehaviour
         isSpawning = false;
         timeSince = 0f;
         wave++;
-        StartCoroutine(StartWave()); // may end up implementing a button to start waves rather than be on a timing system
+        StartCoroutine(StartWave()); // may end up implementing a button to start waves rather than being on a timing system
     }
 
     // calculates how many enemies to spawn per wave - this is for early testing purposes, I plan to design the rounds like in BTD

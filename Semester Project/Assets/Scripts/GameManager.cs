@@ -9,20 +9,34 @@ public class GameManager : MonoBehaviour
     public Transform startPoint;
     public Transform[] enemyPath; // type 'Transform' holds position, rotation and scale of an object - used here to store enemy path node locations
 
+    public int coins;
+
     private void Awake()
     {
-        master = this;
+        master = this; // sets our static instance of GameManager to 'this' instance
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        coins = 100;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddCoins(int num)
     {
-        
+        coins += num;
+    }
+
+    public bool SpendCoins(int num)
+    {
+        if (num <= coins)
+        {
+            coins -= num;
+            return true;
+        } else
+        {
+            Debug.Log("You don't have enough coins.");
+            return false;
+        }
     }
 }
