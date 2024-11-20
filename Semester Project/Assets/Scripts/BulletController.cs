@@ -14,7 +14,11 @@ public class BulletController : MonoBehaviour
     // FixedUpdate for physics stuff
     void FixedUpdate()
     {
-        if (!target) return;
+        if (!target)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         Vector2 direction = (target.position - transform.position).normalized; // gets direction for bullet, normalized to stay between 0 and 1
 

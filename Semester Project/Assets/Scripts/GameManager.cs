@@ -27,16 +27,14 @@ public class GameManager : MonoBehaviour
         coins += num;
     }
 
-    public bool SpendCoins(int num)
+    public void SpendCoins(int num)
     {
         if (num <= coins)
         {
             coins -= num;
-            return true;
         } else
         {
             Debug.Log("You don't have enough coins.");
-            return false;
         }
     }
 }

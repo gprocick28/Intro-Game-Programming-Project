@@ -6,7 +6,7 @@ public class BuildTower : MonoBehaviour
 {
     public static BuildTower manager;
 
-    public GameObject[] towers; // array of tower objects to build - simple implementation
+    public Tower[] towers; // array of tower objects to build - simple implementation
 
     private int selectedTower = 0; // index of currently selected tower
 
@@ -15,8 +15,13 @@ public class BuildTower : MonoBehaviour
         manager = this; // sets our static instance of BuildTower manager to 'this' instance
     }
 
-    public GameObject GetTower()
+    public Tower GetTower()
     {
         return towers[selectedTower];
+    }
+
+    public void SetTower(int tower_)
+    {
+        selectedTower = tower_;
     }
 }
