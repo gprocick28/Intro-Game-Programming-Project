@@ -277,9 +277,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3980957364233020979}
-  - component: {fileID: 6288241520453396071}
+  - component: {fileID: 2866131833574778206}
+  - component: {fileID: 4141131134297584256}
   m_Layer: 0
-  m_Name: BasicTower
+  m_Name: SniperTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,7 +303,7 @@ Transform:
   - {fileID: 2621763919521512275}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6288241520453396071
+--- !u!114 &2866131833574778206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,6 +312,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 5016284638424619390}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1db42ea409b0e46b8f7b71fa502949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationPoint: {fileID: 5171098478050391978}
+  maskEnemy:
+    serializedVersion: 2
+    m_Bits: 64
+  towerRange: 25
+  bulletPrefab: {fileID: 9054303659829054769, guid: 8937f10796f536344b4ca42c9062cb9a, type: 3}
+  fireRate: 1
+  fireDelay: 0
+  firePoint: {fileID: 3583804923683993577}
+  upgradeMenu: {fileID: 3148237475857229639}
+  upgradeButton: {fileID: 8669235142411515484}
+  levelText: {fileID: 5621874140676448456}
+--- !u!114 &4141131134297584256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5016284638424619390}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19ac8b2c959155a4398dfbf631132cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -318,9 +343,9 @@ MonoBehaviour:
   maskEnemy:
     serializedVersion: 2
     m_Bits: 64
-  towerRange: 3
+  towerRange: 25
   bulletPrefab: {fileID: 9054303659829054769, guid: 8937f10796f536344b4ca42c9062cb9a, type: 3}
-  fireRate: 2
+  fireRate: 1
   fireDelay: 0
   firePoint: {fileID: 3583804923683993577}
   upgradeMenu: {fileID: 3148237475857229639}
@@ -778,7 +803,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1851148161, guid: 53eb33e83d4e8be4f8481585a4dbbe66, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.24705882, g: 0.8784314, b: 0.14509805, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

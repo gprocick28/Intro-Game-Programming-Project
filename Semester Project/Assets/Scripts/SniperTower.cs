@@ -6,7 +6,7 @@ using UnityEditor;
 using TMPro;
 
 
-public class BasicTower : MonoBehaviour 
+public class SniperTower : MonoBehaviour
 {
     [SerializeField] private Transform rotationPoint;
     [SerializeField] private LayerMask maskEnemy; // mask so that tower only hits enemies and not other objects
@@ -67,7 +67,8 @@ public class BasicTower : MonoBehaviour
         if (!TargetInRange())
         {
             target = null;
-        } else
+        }
+        else
         {
             fireDelay += Time.deltaTime; // adds time in seconds since last frame to fireDelay
 
@@ -85,6 +86,8 @@ public class BasicTower : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         BulletController controller = bullet.GetComponent<BulletController>();
+        controller.bulletDamage *= 2;
+        controller.bulletSpeed *= 3;
         controller.SetTarget(target);
     }
 
@@ -118,11 +121,13 @@ public class BasicTower : MonoBehaviour
 
     public void OpenUpgradeMenu()
     {
+        Debug.Log("open function");
         upgradeMenu.SetActive(true);
     }
 
     public void CloseUpgradeMenu()
     {
+        Debug.Log("close function");
         upgradeMenu.SetActive(false);
         UIManager.master.SetHovering(false);
     }

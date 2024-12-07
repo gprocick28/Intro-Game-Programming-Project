@@ -18,7 +18,7 @@ public class EnemySpawning : MonoBehaviour
     public int enemiesToSpawn; // amount of enemies left to spawn
     private float breakLength = 5f; // amount of time between waves in seconds
     private float timeSince; // amount of time since last enemy in seconds
-    private float epsCap = 10f; // absolute maximum amount of enemies per second
+    private float enemyCap = 10f; // absolute maximum amount of enemies per second
     public float eps; // enemies per second (changed every wave)
 
     // https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html
@@ -79,27 +79,27 @@ public class EnemySpawning : MonoBehaviour
         isSpawning = false;
         timeSince = 0f;
         wave++;
-        StartCoroutine(StartWave()); // may end up implementing a button to start waves rather than being on a timing system
+        StartCoroutine(StartWave()); // may end up implementing a button to start waves rather than being on a timing system - never happened.
     }
 
-    // calculates how many enemies to spawn per wave - this is for early testing purposes, I plan to design the rounds like in BTD
+    // calculates how many enemies to spawn per wave
     private int EnemyCalculation()
     {
-        return Mathf.RoundToInt(startingEnemyNum * Mathf.Pow(wave, difficultyMultiplier)); // derives number of enemies from startingEnemyNum and
-                                                                                           // wave^difficultyMultiplier - rounds to int
+        return Mathf.RoundToInt(startingEnemyNum * Mathf.Pow(wave, difficultyMultiplier)); // derives number of enemies
+                                                                                           // startingEnemyNum * wave^difficultyMultiplier - rounds to int
     }
 
     private float EnemiesPerSecond()
     {
         // scales enemiesPerSecond to make game increasingly more difficult
         // https://learn.microsoft.com/en-us/dotnet/api/system.math.clamp?view=net-9.0
-        return Mathf.Clamp(originalEnemiesPerSecond * Mathf.Pow(wave, difficultyMultiplier), 0f, epsCap);
+        return Mathf.Clamp(originalEnemiesPerSecond * Mathf.Pow(wave, difficultyMultiplier), 0f, enemyCap);
     }
 
     void SpawnEnemy()
     {
         int i = Random.Range(0, enemyTypes.Length);
-        GameObject typeToSpawn = enemyTypes[i]; // this will be random once more enemies are implemented (it will be random until everything is in and tested, I plan to have hard coded waves like bloons TD)
+        GameObject typeToSpawn = enemyTypes[i]; 
         // shoutout to MonkeyKidGC on YouTube for showing me how to use the instantiate function for prefabs - https://www.youtube.com/watch?v=zMjhGpJnjP0
         Instantiate(typeToSpawn, GameManager.master.startPoint.position, Quaternion.identity); // Quaternion.identity spawns with current rotation
     }

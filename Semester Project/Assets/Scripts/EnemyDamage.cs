@@ -7,7 +7,8 @@ public class EnemyDamage : MonoBehaviour
 
     public int health = 1;
     private bool isDead = false; // prevents onEnemyDeath from being invoked multiple times if towers hit an enemy at the same time
-    [SerializeField] private int enemyWorth = 50; // amount of coins that you get for defeating enemy
+    public int enemyWorth = 50;  // amount of coins that you get for defeating enemy
+    public int damageValue = 10; // amount of damage enemy does when it reaches the end
 
     public void DoDamage(int damage)
     {

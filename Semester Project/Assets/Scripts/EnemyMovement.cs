@@ -12,12 +12,14 @@ public class EnemyMovement : MonoBehaviour
     private Transform target; // current point that enemy should move toward
     private int location = 0; // current location of enemy on path
 
+    private EnemyDamage enemy;  // enemy damage instance for doing damage
 
     // Start is called before the first frame update
     void Start()
     {
         originalSpeed = moveSpeed;
         target = GameManager.master.enemyPath[location]; // set target of enemy to first point of path
+        enemy = GetComponent<EnemyDamage>();
     }
 
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class EnemyMovement : MonoBehaviour
             if (location == GameManager.master.enemyPath.Length) // if enemy reaches end of path
             {
                 EnemySpawning.onEnemyDeath.Invoke(); // calls onEnemyDeath (EnemyDeath()) immediately
+                GameManager.master.SubtractHealth(enemy.damageValue); // do damage
                 Destroy(gameObject); // destroy enemy
                 return;
             } else

@@ -7,7 +7,7 @@ public class BulletController : MonoBehaviour
 
     public Rigidbody2D rigidBody;
 
-    public float bulletSpeed = 5f;
+    public float bulletSpeed = 10f;
     public int bulletDamage = 1;
     private Transform target;
 

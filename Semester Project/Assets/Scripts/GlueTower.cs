@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using TMPro;
 
 public class GlueTower : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class GlueTower : MonoBehaviour
 
     private int towerLevel = 1;
 
+    public TextMeshProUGUI levelText; // for displaying level in upgrade menu
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,7 @@ public class GlueTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        levelText.text = towerLevel.ToString(); // displays level
         triggerDelay += Time.deltaTime; // adds time in seconds since last frame to triggerDelay
 
         // triggerDelay is the time since the last frame in seconds, once it is greater than or equal to 1 divided by the rate of fire, it fires

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8256820542910885739}
   - component: {fileID: -5959221630733747765}
   m_Layer: 6
-  m_Name: ProfessorEnemy
+  m_Name: QuickEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 755081166, guid: bb5e76465539f2c45b6489ea1df3fb16, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.27303043, g: 1, b: 0.042452812, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 8761342776840411848}
-  moveSpeed: 5
+  moveSpeed: 7
 --- !u!114 &-5959221630733747765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,5 +199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  enemyWorth: 50
-  damageValue: 10
+  enemyWorth: 35
+  damageValue: 5
+  enemyTag: 1
