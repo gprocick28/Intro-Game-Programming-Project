@@ -13,6 +13,7 @@ public class EnemyMovement : MonoBehaviour
     private int location = 0; // current location of enemy on path
 
     private EnemyDamage enemy;  // enemy damage instance for doing damage
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class EnemyMovement : MonoBehaviour
         originalSpeed = moveSpeed;
         target = GameManager.master.enemyPath[location]; // set target of enemy to first point of path
         enemy = GetComponent<EnemyDamage>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -46,6 +48,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector2 direction = (target.position - transform.position).normalized; // direction that enemy must move in to reach target (target postion - current position normalized)
         rigidBody.velocity = direction * moveSpeed; // moves rigidBody in correct direction by calculating velocity based on direction and moveSpeed
+        FlipEnemySprite();
     }
 
     // for use with glue tower
@@ -58,5 +61,14 @@ public class EnemyMovement : MonoBehaviour
     public void ResetSpeed()
     {
         moveSpeed = originalSpeed;
+    }
+
+    public void FlipEnemySprite()
+    {
+        if (rigidBody.velocity.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        } else
+            spriteRenderer.flipX = false;
     }
 }

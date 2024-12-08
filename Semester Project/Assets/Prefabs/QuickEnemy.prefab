@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 8761342776840411848}
-  moveSpeed: 7
+  moveSpeed: 9
 --- !u!114 &-5959221630733747765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,4 +201,3 @@ MonoBehaviour:
   health: 2
   enemyWorth: 35
   damageValue: 5
-  enemyTag: 1

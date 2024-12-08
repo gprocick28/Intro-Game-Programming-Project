@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     {
         if (health <= 0)
         {
-            Time.timeScale = 0;
+            waveTracker.isDead = true;
             gameOver.SetActive(true);
         }
     }

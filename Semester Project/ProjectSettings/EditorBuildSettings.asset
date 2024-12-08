@@ -8,4 +8,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelOneScreen.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/StartScreen.unity
+    guid: f771df93c9ac5c341bbbfc9f9c2425f3
+  - enabled: 1
+    path: Assets/Scenes/CreditsScreen.unity
+    guid: 1243c7f129dbc3042a3c6b73e8ae54ec
+  - enabled: 1
+    path: Assets/Scenes/HowToPlayScreen.unity
+    guid: 5a058cb2c2208424e985eadb7cf81b2c
+  - enabled: 1
+    path: Assets/Scenes/LevelFiveScreen.unity
+    guid: 4efffbdf14c96a2478782c6ea530257d
+  - enabled: 1
+    path: Assets/Scenes/LevelFourScreen.unity
+    guid: 0d773b4f041fb7d4e9b621ed2b4181b0
+  - enabled: 1
+    path: Assets/Scenes/LevelSelectScreen.unity
+    guid: c67fe4135a313eb428e4b71296920abd
+  - enabled: 1
+    path: Assets/Scenes/LevelThreeScreen.unity
+    guid: d7f78bdf2b2a2b046809da3a7da53b2b
+  - enabled: 1
+    path: Assets/Scenes/LevelTwoScreen.unity
+    guid: d52723d0a397a55468537da2899ad88c
   m_configObjects: {}

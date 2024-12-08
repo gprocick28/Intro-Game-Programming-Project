@@ -20,6 +20,7 @@ public class EnemySpawning : MonoBehaviour
     private float timeSince; // amount of time since last enemy in seconds
     private float enemyCap = 10f; // absolute maximum amount of enemies per second
     public float eps; // enemies per second (changed every wave)
+    public bool isDead; // for stopping spawning after death
 
     // https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html
     public static UnityEvent onEnemyDeath = new UnityEvent(); // intialize to a new UnityEvent() - need unity event so that when damage is done in other scripts, we can call our EnemyDeath method from this script
@@ -36,6 +37,7 @@ public class EnemySpawning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isDead = false;
         // https://stackoverflow.com/questions/30056471/how-to-make-the-script-wait-sleep-in-a-simple-way-in-unity
         StartCoroutine(StartWave()); // starts first wave
     }
@@ -46,17 +48,20 @@ public class EnemySpawning : MonoBehaviour
         if (!isSpawning) return;
         timeSince += Time.deltaTime; // adds 'deltaTime' each frame; should go up roughly by one each second (I think, the documentation is kinda confusing but it works)
 
-        if (timeSince >= (1f / eps) && enemiesToSpawn > 0) // spawns enemies (EX: if eps = 0.5, the closure will trigger twice per second)
+        if (!isDead)
         {
-            SpawnEnemy();
-            enemiesToSpawn--;
-            livingEnemies++;
-            timeSince = 0f; // prevents if from continuously returning true
-        }
+            if (timeSince >= (1f / eps) && enemiesToSpawn > 0) // spawns enemies (EX: if eps = 0.5, the closure will trigger twice per second)
+            {
+                SpawnEnemy();
+                enemiesToSpawn--;
+                livingEnemies++;
+                timeSince = 0f; // prevents if from continuously returning true
+            }
 
-        if (livingEnemies == 0 && enemiesToSpawn == 0)
-        {
-            EndWave();
+            if (livingEnemies == 0 && enemiesToSpawn == 0)
+            {
+                EndWave();
+            }
         }
     }
 

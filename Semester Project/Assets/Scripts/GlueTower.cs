@@ -16,7 +16,7 @@ public class GlueTower : MonoBehaviour
 
     private float baseTriggerRate;
     private float baseGlueTime;
-    private int baseUpgradeCost = 100;
+    private int baseUpgradeCost = 150;
 
     public GameObject upgradeMenu;
     public Button upgradeButton;

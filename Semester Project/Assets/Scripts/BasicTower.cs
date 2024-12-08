@@ -139,12 +139,6 @@ public class BasicTower : MonoBehaviour
         fireRate = FireRateCalculation();
 
         towerRange = RangeCalculation();
-
-        CloseUpgradeMenu();
-
-        Debug.Log("New fireRate: " + fireRate);
-        Debug.Log("New range: " + towerRange);
-        Debug.Log("New cost: " + CostCalculation());
     }
 
     // calculates fire rate to upgrade to
